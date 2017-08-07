@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="Taxi.Syntagm" x="924" y="935">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="Taxi.Main" x="101" y="796">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="Taxi.Readin"/>
+        <Communication destinationClassName="Taxi.Map"/>
+    </Class>
+    <Class name="Taxi.Controller" x="1112" y="569">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="true"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="true"
+            accessors-accepted="true" constructors-accepted="true"/>
+        <Association destinationClassName="Taxi.Random"
+            endpointName="random" kind="Simple"/>
+        <Association destinationClassName="Taxi.Driver"
+            endpointName="driver_list" kind="Simple"/>
+        <Association destinationClassName="Taxi.Syntagm"
+            endpointName="taxi_list" kind="Simple"/>
+        <Association destinationClassName="Taxi.Map" endpointName="map" kind="Simple"/>
+        <Communication destinationClassName="Taxi.Syntagm"/>
+        <Communication destinationClassName="Taxi.Driver"/>
+        <Communication destinationClassName="Taxi.Random"/>
+        <Communication destinationClassName="Taxi.Map"/>
+    </Class>
+    <Class name="Taxi.Driver" x="1484" y="518">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="true"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="true"
+            accessors-accepted="true" constructors-accepted="true"/>
+        <Association destinationClassName="Taxi.Random"
+            endpointName="random" kind="Simple"/>
+        <Association destinationClassName="Taxi.Syntagm"
+            endpointName="worklist" kind="Simple"/>
+        <Association destinationClassName="Taxi.Light"
+            endpointName="light" kind="Simple"/>
+        <Association destinationClassName="Taxi.Map" endpointName="map" kind="Simple"/>
+        <Communication destinationClassName="Taxi.Light"/>
+        <Communication destinationClassName="Taxi.Random"/>
+        <Communication destinationClassName="Taxi.Map"/>
+    </Class>
+    <Class name="Taxi.Light" x="599" y="839">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="Taxi.Random"
+            endpointName="random" kind="Simple"/>
+        <Association destinationClassName="Taxi.Map" endpointName="map" kind="Simple"/>
+        <Communication destinationClassName="Taxi.Random"/>
+        <Communication destinationClassName="Taxi.Map"/>
+    </Class>
+    <Class name="Taxi.Random" x="923" y="248">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="Taxi.Driver_VIP" x="1305" y="221">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="Taxi.Driver"/>
+        <Communication destinationClassName="Taxi.Controller"/>
+        <Communication destinationClassName="Taxi.Driver"/>
+        <Communication destinationClassName="Taxi.Random"/>
+        <Communication destinationClassName="Taxi.Map"/>
+    </Class>
+    <Class name="Taxi.People" x="930" y="596">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="Taxi.Syntagm"
+            endpointName="maplist" kind="Simple"/>
+        <Association destinationClassName="Taxi.Controller"
+            endpointName="ctrl" kind="Simple"/>
+        <Association destinationClassName="Taxi.Syntagm"
+            endpointName="findlist" kind="Simple"/>
+        <Association destinationClassName="Taxi.Syntagm"
+            endpointName="calllist" kind="Simple"/>
+        <Association destinationClassName="Taxi.Map" endpointName="map" kind="Simple"/>
+        <Communication destinationClassName="Taxi.Controller"/>
+        <Communication destinationClassName="Taxi.Map"/>
+    </Class>
+    <Class name="Taxi.Readin" x="298" y="760">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="Taxi.Light"
+            endpointName="light" kind="Simple"/>
+        <Association destinationClassName="Taxi.Map" endpointName="map" kind="Simple"/>
+        <Communication destinationClassName="Taxi.Light"/>
+        <Communication destinationClassName="Taxi.Map"/>
+    </Class>
+    <Class name="Taxi.Map" x="594" y="120">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="Taxi.Controller"
+            endpointName="ctrl" kind="Simple"/>
+        <Communication destinationClassName="Taxi.Controller"/>
+    </Class>
+</ClassDiagram>
