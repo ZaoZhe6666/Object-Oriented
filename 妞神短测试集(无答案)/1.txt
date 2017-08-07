@@ -1,0 +1,11 @@
+(FR,10,UP,0)
+(FR,10,UP,6)
+(FR,6,DOWN,6)
+(FR,7,DOWN,12)
+(FR,5,DOWN,12)
+(FR,6,UP,14)
+(ER,10,12)
+(FR,9,DOWN,8)
+(FR,10,DOWN,6)
+(ER,6,8)
+run
