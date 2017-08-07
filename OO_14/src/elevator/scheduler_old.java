@@ -3,7 +3,12 @@ package elevator;
 import java.util.ArrayList;
 
 /*		Overview
- * 	ÀÏµ÷¶ÈÆ÷Àà£¬¿ÉÍê³É£º¼òµ¥µÄ¼õ·¨ÔËËã£¬ÏàÍ¬Ö¸ÁîµÄÉ¸³ı £¬¿ª¹ØÃÅÄ£Äâ(¾ÍÊÇ+1s)
+ * 	è€è°ƒåº¦å™¨ç±»ï¼Œå¯å®Œæˆï¼šç®€å•çš„å‡æ³•è¿ç®—ï¼Œç›¸åŒæŒ‡ä»¤çš„ç­›é™¤ ï¼Œå¼€å…³é—¨æ¨¡æ‹Ÿ(å°±æ˜¯+1s)
+ * 
+ * 	AF(c) = (finish_floor,finish_time,list,warn,number_for_test_i) .where
+ * 			finish_floor = c.finish_floor,finish_time = c.finish_time,
+ * 			list = c.list,warn = c.warn,number_for_test_i = c.number_for_test_i
+ * 
  * */
 
 public class scheduler_old {
@@ -17,12 +22,12 @@ public class scheduler_old {
 	protected int nft4=0;
 	protected int nft5=0;
 	
-	/*²»±äÊ½
+	/*ä¸å˜å¼
 	 * 1	1<=finish floor<=10
 	 * 2	finish time>=0
-	 * 3	listÎª²»ÎªNULLµÄ×ÓÏîÈ«²¿ÎªjiegouÀàĞÍ±äÁ¿µÄArrayListÀàĞÍ±äÁ¿
+	 * 3	listä¸ºä¸ä¸ºNULLçš„å­é¡¹å…¨éƒ¨ä¸ºjiegouç±»å‹å˜é‡çš„ArrayListç±»å‹å˜é‡
 	 * 4	0<=warn<=1
-	 * 5	0<=number for test ¿Õ/2/3/4<=100
+	 * 5	0<=number for test ç©º/2/3/4<=100
 	 * */
 	public boolean repOK_old(){
 		/*@Effects: \result==invariant(this).*/
@@ -67,7 +72,6 @@ public class scheduler_old {
 		return true;
 	}
 	
-	
 	public int getwarn(){
 		/* @ REQUIRES: repOK()
 		 * @ MODIFIES: none
@@ -77,9 +81,9 @@ public class scheduler_old {
 	}
 
 	public int sub(int a,int b){
-		/* @ REQUIRES: repOK()
+		/* @ REQUIRES: none
 		 * @ MODIFIES: none
-		 * @ EFFECTS: \result == |a-b| (||±íÊ¾¾ø¶ÔÖµ£¬¼´ABS)
+		 * @ EFFECTS: \result == |a-b| (||è¡¨ç¤ºç»å¯¹å€¼ï¼Œå³ABS)
 		 */
 		if(a>b){
 			return a-b;
@@ -93,7 +97,7 @@ public class scheduler_old {
 		/* @ REQUIRES: repOK() && 
 		 * 			j = new jiegou(a,b,c,d)==>j.repOK()
 		 * @ MODIFIES: list
-		 * @ EFFECTS: ÏòlistÖĞÌí¼ÓÒ»ÏîĞÂµÄ½á¹¹Ìå×ÓÏîjiegou(a,b,c,d)
+		 * @ EFFECTS: å‘listä¸­æ·»åŠ ä¸€é¡¹æ–°çš„ç»“æ„ä½“å­é¡¹jiegou(a,b,c,d)
 		 */
 		list.add(new jiegou(a,b,c,d));
 		return;
@@ -101,12 +105,12 @@ public class scheduler_old {
 	
 	public boolean samejudge(jiegou j){
 		/* @ REQUIRES: repOK() j.repOK()
-		 * @ MODIFIES: list
-		 * @ EFFECTS: Èôµ±Ç°Ê±¿ÌÇ°·¢³ö½á¹¹ÌåjÖĞ´æ´¢Ö¸Áî==>
-		 * 					ÅĞ¶Ï½á¹¹ÌåjÖĞ´æ´¢µÄÖ¸ÁîÊÇ·ñÓëÒÑÍê³ÉÖ¸Áî´æÔÚSAMEÇé¿ö
-		 * 					ÈôÓĞ(¼´Í¬ÖÊÇëÇó£¬ÔÚÄ³ÌõÖ¸ÁîÖ´ĞĞÍê±ÏÇ°£¬´æÔÚÍ¬²ã·´¸´°´µÄÇé¿ö)==>\result==true
-		 * 					·ñÔò==>\result==false
-		 * 			  ·ñÔò==>¸üĞÂÊ±¼äµ½½á¹¹ÌåjÖĞ´æ´¢Ö¸Áî·¢³öÊ±¼ä
+		 * @ MODIFIES: list,j,finishtime
+		 * @ EFFECTS: è‹¥å½“å‰æ—¶åˆ»å‰å‘å‡ºç»“æ„ä½“jä¸­å­˜å‚¨æŒ‡ä»¤==>
+		 * 					åˆ¤æ–­ç»“æ„ä½“jä¸­å­˜å‚¨çš„æŒ‡ä»¤æ˜¯å¦ä¸å·²å®ŒæˆæŒ‡ä»¤å­˜åœ¨SAMEæƒ…å†µ
+		 * 					è‹¥æœ‰(å³åŒè´¨è¯·æ±‚ï¼Œåœ¨æŸæ¡æŒ‡ä»¤æ‰§è¡Œå®Œæ¯•å‰ï¼Œå­˜åœ¨åŒå±‚åå¤æŒ‰çš„æƒ…å†µ)==>\result==true
+		 * 					å¦åˆ™==>\result==false
+		 * 			  å¦åˆ™==>æ›´æ–°æ—¶é—´åˆ°ç»“æ„ä½“jä¸­å­˜å‚¨æŒ‡ä»¤å‘å‡ºæ—¶é—´
 		 */
 		if(j.gettime()<=finishtime){
 			nft=60;
@@ -143,15 +147,15 @@ public class scheduler_old {
 	public String j_s(jiegou j){
 		/* @ REQUIRES: repOK() && j.repOK()
 		 * @ MODIFIES: none
-		 * @ EFFECTS: \result == jÖĞËù´æ´¢Ö¸Áî´ÓÍâ²¿ÊäÈëÊ±µÄ¸ñÊ½
-		 * 			if jÖĞ´æ´¢µÄÊÇFRÖ¸Áî==>
+		 * @ EFFECTS: \result == jä¸­æ‰€å­˜å‚¨æŒ‡ä»¤ä»å¤–éƒ¨è¾“å…¥æ—¶çš„æ ¼å¼
+		 * 			if jä¸­å­˜å‚¨çš„æ˜¯FRæŒ‡ä»¤==>
 		 * 					\result == [FR,X,Y,Z] 
-		 * 						ÆäÖĞ£º(	1<=X<=10 && 
+		 * 						å…¶ä¸­ï¼š(	1<=X<=10 && 
 		 * 								Y==UP || Y==DOWN &&
 		 * 								0<=Z)
-		 * 			else j ÖĞ´æ´¢µÄÊÇERÖ¸Áî==>
+		 * 			else j ä¸­å­˜å‚¨çš„æ˜¯ERæŒ‡ä»¤==>
 		 * 					\result == [ER,X,Y] 
-		 * 						ÆäÖĞ£º(	1<=X<=10 && 
+		 * 						å…¶ä¸­ï¼š(	1<=X<=10 && 
 		 * 								0<=Y)
 		 */
 		String s;
@@ -168,10 +172,10 @@ public class scheduler_old {
 	
 
 	public void oac_door(){//open and close the door +1s!
-		/* @ REQUIRES: repOK() && j.repOK()
+		/* @ REQUIRES: none
 		 * @ MODIFIES: finish time
 		 * @ EFFECTS: finish time +1s!!!
-		 * 			Ä£Äâ¿ª¹ØÃÅÊ±ºòµÄ+1s,ÔÙÕ¹¿ªĞ´¿ÉÄÜ´æÔÚ±©Á¦Ä¤,ËùÒÔ²»Ğ´ÁË
+		 * 			æ¨¡æ‹Ÿå¼€å…³é—¨æ—¶å€™çš„+1s,å†å±•å¼€å†™å¯èƒ½å­˜åœ¨æš´åŠ›è†œ,æ‰€ä»¥ä¸å†™äº†
 		 */
 		finishtime++;
 		return;

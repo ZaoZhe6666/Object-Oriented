@@ -10,26 +10,26 @@ public class ElevatorTest {
 	public void testRepOK() {
 		Elevator ele = new Elevator();
 		
-		//³õÖµÕı³£
+		//åˆå€¼æ­£å¸¸
         assertEquals(ele.repOK(),true);
         
-        //¸Ä±äÎª²»ÕıÈ·
-        //1	0²ã
+        //æ”¹å˜ä¸ºä¸æ­£ç¡®
+        //1	0å±‚
         ele.setfloor(-1);
         assertEquals(ele.repOK(),false);
         
-        //2	11²ã	
+        //2	11å±‚	
         ele.setfloor(12);
         assertEquals(ele.repOK(),false);
 
-        //3	·½Ïò´íÎó
+        //3	æ–¹å‘é”™è¯¯
         ele.setfloor(-2);
         ele.setway(-2);
         assertEquals(ele.repOK(),false);
         ele.setway(2);
         assertEquals(ele.repOK(),false);
         
-        //»Ø¹éÕıÈ·
+        //å›å½’æ­£ç¡®
         ele.setway(0);
         assertEquals(ele.repOK(),true);
 	}
@@ -37,11 +37,11 @@ public class ElevatorTest {
 	@Test
 	public void testSetfloor() {
 		Elevator ele = new Elevator();
-		//´Ó1²ãÍùÉÏÔË¶¯µ½2²ã
+		//ä»1å±‚å¾€ä¸Šè¿åŠ¨åˆ°2å±‚
 		ele.setfloor(1);
 		assertEquals(ele.getfloor(),2);
 		
-		//´Ó2²ãÍùÏÂÔË¶¯µ½1²ã
+		//ä»2å±‚å¾€ä¸‹è¿åŠ¨åˆ°1å±‚
 		ele.setfloor(-1);
 		assertEquals(ele.getfloor(),1);
 	}
@@ -49,11 +49,11 @@ public class ElevatorTest {
 	@Test
 	public void testGetfloor() {
 		Elevator ele = new Elevator();
-		//´Ó1²ãÍùÉÏÔË¶¯µ½2²ã
+		//ä»1å±‚å¾€ä¸Šè¿åŠ¨åˆ°2å±‚
 		ele.setfloor(1);
 		assertEquals(ele.getfloor(),2);
 		
-		//´Ó2²ãÍùÏÂÔË¶¯µ½1²ã
+		//ä»2å±‚å¾€ä¸‹è¿åŠ¨åˆ°1å±‚
 		ele.setfloor(-1);
 		assertEquals(ele.getfloor(),1);
 	}
@@ -62,15 +62,15 @@ public class ElevatorTest {
 	public void testSetway() {
 		Elevator ele = new Elevator();
 		
-		//ÉèÖÃ·½ÏòÎªÏòÉÏ
+		//è®¾ç½®æ–¹å‘ä¸ºå‘ä¸Š
 		ele.setway(1);
 		assertEquals(ele.getway(),1);
 		
-		//ÉèÖÃ·½ÏòÎª¾²Ö¹
+		//è®¾ç½®æ–¹å‘ä¸ºé™æ­¢
 		ele.setway(0);
 		assertEquals(ele.getway(),0);
 		
-		//ÉèÖÃ·½ÏòÎªÏòÏÂ
+		//è®¾ç½®æ–¹å‘ä¸ºå‘ä¸‹
 		ele.setway(-1);
 		assertEquals(ele.getway(),-1);
 	}
@@ -79,15 +79,15 @@ public class ElevatorTest {
 	public void testGetway() {
 		Elevator ele = new Elevator();
 		
-		//ÉèÖÃ·½ÏòÎªÏòÉÏ
+		//è®¾ç½®æ–¹å‘ä¸ºå‘ä¸Š
 		ele.setway(1);
 		assertEquals(ele.getway(),1);
 		
-		//ÉèÖÃ·½ÏòÎª¾²Ö¹
+		//è®¾ç½®æ–¹å‘ä¸ºé™æ­¢
 		ele.setway(0);
 		assertEquals(ele.getway(),0);
 		
-		//ÉèÖÃ·½ÏòÎªÏòÏÂ
+		//è®¾ç½®æ–¹å‘ä¸ºå‘ä¸‹
 		ele.setway(-1);
 		assertEquals(ele.getway(),-1);
 	}

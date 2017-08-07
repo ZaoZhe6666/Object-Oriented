@@ -7,12 +7,12 @@ class jiegou {
 	protected String way="";
 	protected double time=0;
 	
-	/*²»±äÊ½
+	/*ä¸å˜å¼
 	 * 1	r.equals("") || r.equals("ER") || r.equals("FR") 
-	 * 2	rÊÇ¸ö²»Îª¿ÕµÄStringĞÍ±äÁ¿
+	 * 2	ræ˜¯ä¸ªä¸ä¸ºç©ºçš„Stringå‹å˜é‡
 	 * 3	1<=floor<=10
 	 * 4	way.equals("") || way.equals("UP") || way.equals("STILL") || way.equals("DOWN")
-	 * 5	wayÊÇ¸ö²»Îª¿ÕµÄStringĞÍ±äÁ¿
+	 * 5	wayæ˜¯ä¸ªä¸ä¸ºç©ºçš„Stringå‹å˜é‡
 	 * 6	time>=0
 	 * */
 	public boolean repOK(){

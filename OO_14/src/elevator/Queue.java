@@ -5,7 +5,9 @@ import java.util.ArrayList;
 /*
  * 		Overview
  * 
- * 	ÇëÇó¶ÓÁÐÀà£¬ÓÃÓÚ´æ´¢ËùÓÐµÄÓÐÐ§ÇëÇó(ÎÞÐ§ÇëÇó¾­ÓÉRequestÍâ²¿¶ÁÈëÀàÒÑ¾­É¾È¥)
+ * 	è¯·æ±‚é˜Ÿåˆ—ç±»ï¼Œç”¨äºŽå­˜å‚¨æ‰€æœ‰çš„æœ‰æ•ˆè¯·æ±‚(æ— æ•ˆè¯·æ±‚ç»ç”±Requestå¤–éƒ¨è¯»å…¥ç±»å·²ç»åˆ åŽ»)
+ * 
+ * 	AF(c) = (list,number_for_test,order) .where list = c.list,number_for_test = c.number_for_test,order=c.order
  * 
  * */
 
@@ -15,8 +17,8 @@ class Queue {
 	
 	protected int order=0;
 	
-	/*²»±äÊ½
-	 * 1	listÎª²»ÎªNULLµÄ×ÓÏîÈ«²¿ÎªjiegouÀàÐÍ±äÁ¿µÄArrayListÀàÐÍ±äÁ¿
+	/*ä¸å˜å¼
+	 * 1	listä¸ºä¸ä¸ºNULLçš„å­é¡¹å…¨éƒ¨ä¸ºjiegouç±»åž‹å˜é‡çš„ArrayListç±»åž‹å˜é‡
 	 * 2	order>=0
 	 * 3	0<=number for test<=
 	 * */
@@ -44,26 +46,26 @@ class Queue {
 	
 	
 	public Queue(){
-		/* @ REQUIRES: repOK()
+		/* @ REQUIRES: none
 		 * @ MODIFIES: none
 		 * @ EFFECTS: none
 		 */
 	}
 	
 	public void saveone(String s){
-		/* @ REQUIRES: repOK() && sÎªºÏ·¨ÇëÇó
+		/* @ REQUIRES: repOK() && sä¸ºåˆæ³•è¯·æ±‚
 		 * @ MODIFIES: list
-		 * @ EFFECTS: ´ÓÍâ²¿ÊäÈëÀàrequestÖÐ»ñµÃÒ»¸öÐÂµÄºÏ·¨ÇëÇó£¬²¢´æÈëlistÄ©Î²
+		 * @ EFFECTS: ä»Žå¤–éƒ¨è¾“å…¥ç±»requestä¸­èŽ·å¾—ä¸€ä¸ªæ–°çš„åˆæ³•è¯·æ±‚ï¼Œå¹¶å­˜å…¥listæœ«å°¾
 		 * 
-		 * 			ºÏ·¨ÇëÇó¶¨Òå£º
-		 * 				ÇëÇóÎªStringÀàÐÍµÄ±äÁ¿
-		 * 				sÎªÐÎÈç(FR,X,Y,Z)µÄ×Ö·û´®
-		 * 						ÆäÖÐ£º(	1<=X<=10 && 
+		 * 			åˆæ³•è¯·æ±‚å®šä¹‰ï¼š
+		 * 				è¯·æ±‚ä¸ºStringç±»åž‹çš„å˜é‡
+		 * 				sä¸ºå½¢å¦‚(FR,X,Y,Z)çš„å­—ç¬¦ä¸²
+		 * 						å…¶ä¸­ï¼š(	1<=X<=10 && 
 		 * 								Y==UP || Y==DOWN &&
-		 * 								0<=Z,XºÍZ¾ùÎªÕýÕûÊý)
-		 * 				»òÐÎÈç(ER,X,Y)µÄ×Ö·û´®
-		 * 						ÆäÖÐ£º(	1<=X<=10 && 
-		 * 								0<=Y,XºÍY¾ùÎªÕýÕûÊý)
+		 * 								0<=Z,Xå’ŒZå‡ä¸ºæ­£æ•´æ•°)
+		 * 				æˆ–å½¢å¦‚(ER,X,Y)çš„å­—ç¬¦ä¸²
+		 * 						å…¶ä¸­ï¼š(	1<=X<=10 && 
+		 * 								0<=Y,Xå’ŒYå‡ä¸ºæ­£æ•´æ•°)
 		 */
 		s=s.replaceAll("\\(", "").replaceAll("\\)", "");
 		String[] sarray = s.split(",");
@@ -100,14 +102,14 @@ class Queue {
 		 * @ MODIFIES: order
 		 * @ EFFECTS: \result == list.get(order)
 		 * 			&& order++
-		 * 			°´Ë³Ðò²»ÖØ¸´µÄÈ¡³ö´Ó0µ½list.size()ÖÐµÄµÚorderÏî
+		 * 			æŒ‰é¡ºåºä¸é‡å¤çš„å–å‡ºä»Ž0åˆ°list.size()ä¸­çš„ç¬¬orderé¡¹
 		 */
 		return list.get(order++);
 	}
 	public void setorder(){
 		/* @ REQUIRES: repOK()
 		 * @ MODIFIES: order
-		 * @ EFFECTS: ³õÊ¼»¯½«orderÖÃÁã
+		 * @ EFFECTS: åˆå§‹åŒ–å°†orderç½®é›¶
 		 */
 		order=0;
 		return;

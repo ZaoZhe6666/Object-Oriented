@@ -4,6 +4,8 @@ package elevator;
  * 
  * 	电梯类，模拟电梯升降运动，仅用于记录电梯当前运动方向和电梯所在楼层
  * 
+ * 	AF(c) = (floor_now,way_now) .where floor_now = c.floor_now  way_now = c.way_now 
+ * 
  * */
 
 public class Elevator {
@@ -11,8 +13,8 @@ public class Elevator {
 	private int waynow = 0;
 	
 	/*不变式
-	 * 1	1<=floor now<=10
-	 * 2	-1<=way now<=1
+	 * 1	1<=floor_now<=10
+	 * 2	-1<=way_now<=1
 	 * */
 	public boolean repOK(){
 		if(floornow<1 || floornow>10){
@@ -27,8 +29,9 @@ public class Elevator {
 	public void setfloor(int change){
 		/* @ REQUIRES: repOK() && 
 		 * 				(change == 1 || change==-1)
+		 * 			&& 1<=floor_now+change<=10
 		 * @ MODIFIES: floor now
-		 * @ EFFECTS: \result ==> floor now+=change
+		 * @ EFFECTS:floor now+=change
 		 */
 		this.floornow+=change;
 	}
@@ -44,7 +47,7 @@ public class Elevator {
 		/* @ REQUIRES: repOK()
 		 * 			&& -1<=way<=1
 		 * @ MODIFIES: way now
-		 * @ EFFECTS: \result ==> way now == way
+		 * @ EFFECTS:way now == way
 		 */
 		this.waynow=way;
 	}

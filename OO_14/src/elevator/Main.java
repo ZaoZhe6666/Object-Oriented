@@ -2,8 +2,8 @@ package elevator;
 /*
  * 		Overview
  * 
- * 	MainÀà£¬ ¿ØÖÆÊä³ö»¶Ó­ÓïºÍ½áÊøÓï
- * 	ÊµÀý»¯¸÷Àà£¬×ÜÌå¿ØÖÆÍâ²¿¶ÁÈë¡¢Ö¸Áî´¦Àí¡¢½á¹ûÊä³ö
+ * 	Mainç±»ï¼Œ æŽ§åˆ¶è¾“å‡ºæ¬¢è¿Žè¯­å’Œç»“æŸè¯­
+ * 	å®žä¾‹åŒ–å„ç±»ï¼Œæ€»ä½“æŽ§åˆ¶å¤–éƒ¨è¯»å…¥ã€æŒ‡ä»¤å¤„ç†ã€ç»“æžœè¾“å‡º
  * 
  * */
 class Main {

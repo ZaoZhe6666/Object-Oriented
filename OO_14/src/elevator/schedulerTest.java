@@ -13,10 +13,10 @@ public class schedulerTest {
 	public void testRepOK_old() {
 		scheduler sche = new scheduler(ele);
 		
-		//³õÖµÕıÈ·
+		//åˆå€¼æ­£ç¡®
 		assertEquals(sche.repOK_old(),true);
 		
-		//finish floorÔ½½ç
+		//finish floorè¶Šç•Œ
 		sche.finishfloor=0;
 		assertEquals(sche.repOK_old(),false);
 		
@@ -33,7 +33,7 @@ public class schedulerTest {
 		sche.finishtime=5;
 		assertEquals(sche.repOK_old(),true);
 		
-		//warnÔ½½ç
+		//warnè¶Šç•Œ
 		sche.warn=-1;
 		assertEquals(sche.repOK_old(),false);
 		
@@ -43,7 +43,7 @@ public class schedulerTest {
 		sche.warn=0;
 		assertEquals(sche.repOK_old(),true);
 		
-		//nftÔ½½ç
+		//nftè¶Šç•Œ
 		sche.nft=-1;
 		assertEquals(sche.repOK_old(),false);
 		
@@ -89,7 +89,7 @@ public class schedulerTest {
 		sche.nft5=0;
 		assertEquals(sche.repOK_old(),true);
 		
-		//listÎªnull
+		//listä¸ºnull
 		sche.list=null;
 		assertEquals(sche.repOK_old(),false);
 		assertEquals(sche.list instanceof ArrayList,false);
@@ -99,7 +99,7 @@ public class schedulerTest {
 		
 		assertEquals(sche.list instanceof ArrayList,true);
 		
-		//list×ÓÏîÎª¿Õ
+		//listå­é¡¹ä¸ºç©º
 		sche.list.add(null);
 		assertEquals(sche.repOK_old(),false);
 		
@@ -112,37 +112,37 @@ public class schedulerTest {
 	public void testRepOK() {
 		scheduler sche = new scheduler(ele);
 		
-		//³õÖµÕıÈ·
+		//åˆå€¼æ­£ç¡®
 		assertEquals(sche.repOK(),true);
 		
-		//all listÎªnull
+		//all listä¸ºnull
 		sche.alllist=null;
 		assertEquals(sche.repOK(),false);
 		
 		sche.alllist = new ArrayList<>();
 		assertEquals(sche.repOK(),true);
 		
-		//all list×ÓÏîÎªnull
+		//all listå­é¡¹ä¸ºnull
 		sche.alllist.add(null);
 		assertEquals(sche.repOK(),false);
 		
 		sche.alllist.clear();
 		assertEquals(sche.repOK(),true);
 		
-		//main listÎªnull
+		//main listä¸ºnull
 		sche.mainlist=null;
 		assertEquals(sche.repOK(),false);
 		
 		sche.mainlist = new ArrayList<>();
 		
-		//main list×ÓÏîÎªnull
+		//main listå­é¡¹ä¸ºnull
 		sche.mainlist.add(null);
 		assertEquals(sche.repOK(),false);
 		
 		sche.mainlist.clear();
 		assertEquals(sche.repOK(),true);
 		
-		//eleÎªnull
+		//eleä¸ºnull
 		sche.ele=null;
 		assertEquals(sche.repOK(),false);
 		
@@ -169,12 +169,12 @@ public class schedulerTest {
 
 		assertEquals(sche.nft,0);
 		
-		//FRÖ¸Áî·ÖÖ§
+		//FRæŒ‡ä»¤åˆ†æ”¯
 		jiegou j = new jiegou("FR",1,"UP",0);
 		sche.printf(j, "scheduler test-printf-1");
 		assertEquals(sche.nft,2);
 		
-		//ERÖ¸Áî·ÖÖ§
+		//ERæŒ‡ä»¤åˆ†æ”¯
 		j = new jiegou("ER",1,5);
 		sche.printf(j, "scheduler test-printf-2");
 		assertEquals(sche.nft,1);
@@ -399,7 +399,7 @@ public class schedulerTest {
 
 		sche.nft5=0;
 		
-		//FRÖ¸Áî·ÖÖ§
+		//FRæŒ‡ä»¤åˆ†æ”¯
 		sche.finishfloor=5;
 		jiegou j = new jiegou("FR",5,"UP",0);
 		sche.print(j);
@@ -410,7 +410,7 @@ public class schedulerTest {
 		sche.print(j);
 		assertEquals(sche.nft5,22);
 		
-		//ERÖ¸Áî·ÖÖ§
+		//ERæŒ‡ä»¤åˆ†æ”¯
 		sche.nft5=0;
 		j = new jiegou("ER",5,0);
 		sche.print(j);
@@ -478,7 +478,7 @@ public class schedulerTest {
 	public void testSamejudge() {
 		scheduler sche = new scheduler(this.ele);
 		
-		//³õÖµÕıÈ·
+		//åˆå€¼æ­£ç¡®
 		assertEquals(sche.nft,0);
 		
 		jiegou j = new jiegou("",5,"",20);
@@ -547,16 +547,16 @@ public class schedulerTest {
 	public void testBtwjudge() {
 		scheduler sche = new scheduler(this.ele);
 		
-		//ÉèÖÃµçÌİÔÚ5²ã£¬¼ì²â³õÖµÕıÈ·
+		//è®¾ç½®ç”µæ¢¯åœ¨5å±‚ï¼Œæ£€æµ‹åˆå€¼æ­£ç¡®
 		sche.ele.setfloor(4);
 		assertEquals(sche.nft2,0);
 		
-		//¾²Ö¹×´Ì¬
+		//é™æ­¢çŠ¶æ€
 		sche.ele.setway(0);
 		sche.btwjudge(1);
 		assertEquals(sche.nft2,20);
 		
-		//ÉÏĞĞ
+		//ä¸Šè¡Œ
 		sche.ele.setway(1);
 		sche.btwjudge(1);
 		assertEquals(sche.nft2,21);
@@ -564,7 +564,7 @@ public class schedulerTest {
 		sche.btwjudge(10);
 		assertEquals(sche.nft2,22);
 		
-		//ÏÂĞĞ
+		//ä¸‹è¡Œ
 		sche.ele.setway(-1);
 		sche.btwjudge(10);
 		assertEquals(sche.nft2,23);
@@ -578,18 +578,18 @@ public class schedulerTest {
 	public void testBtw() {
 		scheduler sche = new scheduler(this.ele);
 		
-		//ÉèÖÃÎª5²ãÉÏĞĞ
+		//è®¾ç½®ä¸º5å±‚ä¸Šè¡Œ
 		sche.ele.setway(1);
 		sche.ele.setfloor(4);
 		
-		//²»¿ÉÉÓ´øÖ¸Áî
+		//ä¸å¯æå¸¦æŒ‡ä»¤
 		assertEquals(sche.nft,0);
 		sche.btw(3,"FR",4, -1);
 		assertEquals(sche.nft,50);
 
 
-		//¿ÉÉÓ´øµÄERÖ¸Áî
-		//µçÌİÉÏĞĞ
+		//å¯æå¸¦çš„ERæŒ‡ä»¤
+		//ç”µæ¢¯ä¸Šè¡Œ
 		sche.ele.setway(1);
 		sche.btw(9,"ER",3, 1);
 		assertEquals(sche.nft,52);
@@ -597,7 +597,7 @@ public class schedulerTest {
 		sche.btw(9,"ER",10, 1);
 		assertEquals(sche.nft,53);
 		
-		//µçÌİÏÂĞĞ
+		//ç”µæ¢¯ä¸‹è¡Œ
 		sche.ele.setway(-1);
 		sche.btw(3,"ER",6, -1);
 		assertEquals(sche.nft,54);
@@ -605,13 +605,13 @@ public class schedulerTest {
 		sche.btw(3,"ER",2, -1);
 		assertEquals(sche.nft,55);
 		
-		//¿ÉÉÓ´øµÄFRÖ¸Áî
-		//·½Ïò²»¿ÉÉÓ´ø
+		//å¯æå¸¦çš„FRæŒ‡ä»¤
+		//æ–¹å‘ä¸å¯æå¸¦
 		sche.ele.setway(1);
 		sche.btw(6, "FR", 5, -1);
 		assertEquals(sche.nft,56);
 		
-		//µçÌİÉÏĞĞ
+		//ç”µæ¢¯ä¸Šè¡Œ
 		sche.btw(9,"FR",10, 1);
 		assertEquals(sche.nft,58);
 		
@@ -621,7 +621,7 @@ public class schedulerTest {
 		sche.btw(9,"FR",6, 1);
 		assertEquals(sche.nft,60);
 		
-		//µçÌİÏÂĞĞ
+		//ç”µæ¢¯ä¸‹è¡Œ
 		sche.ele.setway(-1);
 		sche.btw(3,"FR",2, -1);
 		assertEquals(sche.nft,61);

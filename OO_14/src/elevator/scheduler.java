@@ -6,9 +6,11 @@ import java.util.ArrayList;
 /*
  * 		Overview
  * 
- * 	µ÷¶ÈÆ÷Àà£¬¼Ì³Ğ×ÔÀÏµ÷¶ÈÆ÷Àà
- * 	ÀÏµ÷¶ÈÆ÷Àà¿ÉÍê³É£º¼òµ¥µÄ¼õ·¨ÔËËã£¬ÏàÍ¬Ö¸ÁîµÄÉ¸³ı £¬¿ª¹ØÃÅÄ£Äâ(¾ÍÊÇ+1s)
- * 	ĞÂµ÷¶ÈÆ÷(¸ÃÀà)¿ÉÍê³É£ºÉÓ´øÖ¸ÁîµÄÅĞ¶Ï£¬°´Ê±¼äÄ£ÄâµÄµçÌİÔËĞĞ+Ö¸ÁîÔÚ¿ØÖÆÌ¨µÄÊä³ö
+ * 	è°ƒåº¦å™¨ç±»ï¼Œç»§æ‰¿è‡ªè€è°ƒåº¦å™¨ç±»
+ * 	è€è°ƒåº¦å™¨ç±»å¯å®Œæˆï¼šç®€å•çš„å‡æ³•è¿ç®—ï¼Œç›¸åŒæŒ‡ä»¤çš„ç­›é™¤ ï¼Œå¼€å…³é—¨æ¨¡æ‹Ÿ(å°±æ˜¯+1s)
+ * 	æ–°è°ƒåº¦å™¨(è¯¥ç±»)å¯å®Œæˆï¼šæå¸¦æŒ‡ä»¤çš„åˆ¤æ–­ï¼ŒæŒ‰æ—¶é—´æ¨¡æ‹Ÿçš„ç”µæ¢¯è¿è¡Œ+æŒ‡ä»¤åœ¨æ§åˆ¶å°çš„è¾“å‡º
+ * 
+ * 	AF(c) = (all_list,main_list,ele).where   all_list = c.all_list,main_list = c.main_list,ele = c.ele
  * 
  * */
 public class scheduler extends scheduler_old{
@@ -16,10 +18,10 @@ public class scheduler extends scheduler_old{
 	protected ArrayList<jiegou> mainlist=new ArrayList<jiegou>();
 	protected Elevator ele;
 	
-	/*²»±äÊ½
-	 * 1	all listÎª²»ÎªnullµÄ×ÓÏîÈ«²¿ÎªjiegouÀàĞÍµÄArrayList¶ÓÁĞ
-	 * 2	main listÎª²»ÎªnullµÄ×ÓÏîÈ«²¿ÎªjiegouÀàĞÍµÄArrayList¶ÓÁĞ
-	 * 3	ele Îª²»ÎªnullµÄElevatorÀàĞÍ±äÁ¿,ÇÒÂú×ãElevatorÀàµÄrepOK
+	/*ä¸å˜å¼
+	 * 1	all listä¸ºä¸ä¸ºnullçš„å­é¡¹å…¨éƒ¨ä¸ºjiegouç±»å‹çš„ArrayListé˜Ÿåˆ—
+	 * 2	main listä¸ºä¸ä¸ºnullçš„å­é¡¹å…¨éƒ¨ä¸ºjiegouç±»å‹çš„ArrayListé˜Ÿåˆ—
+	 * 3	ele ä¸ºä¸ä¸ºnullçš„Elevatorç±»å‹å˜é‡,ä¸”æ»¡è¶³Elevatorç±»çš„repOK
 	 * */
 	public boolean repOK(){
 		/*@Effects: \result==invariant(this).*/
@@ -68,8 +70,8 @@ public class scheduler extends scheduler_old{
 		 * 			||(ele.getway()==-1 && ele.getfloor()>floor order)==>/result == true
 		 * 				else ==>/result==false
 		 * 						
-		 * 			ÉÓ´øÅĞ¶Ï£¬Èç¹û((µçÌİµ±Ç°ÔË¶¯×´Ì¬ÎªUP£ºµ±Ç°Â¥²ã<Ä¿±êÂ¥²ã<=10)
-		 * 					 || (µçÌİµ±Ç°ÔË¶¯×´Ì¬ÎªDOWN£º1<=Ä¿±êÂ¥²ã<µ±Ç°Â¥²ã))·µ»Øtrue£¬·ñÔò·µ»Øfalse
+		 * 			æå¸¦åˆ¤æ–­ï¼Œå¦‚æœ((ç”µæ¢¯å½“å‰è¿åŠ¨çŠ¶æ€ä¸ºUPï¼šå½“å‰æ¥¼å±‚<ç›®æ ‡æ¥¼å±‚<=10)
+		 * 					 || (ç”µæ¢¯å½“å‰è¿åŠ¨çŠ¶æ€ä¸ºDOWNï¼š1<=ç›®æ ‡æ¥¼å±‚<å½“å‰æ¥¼å±‚))è¿”å›trueï¼Œå¦åˆ™è¿”å›false
 		 */
 		nft2=20;
 		if(ele.getway()==1){
@@ -96,19 +98,19 @@ public class scheduler extends scheduler_old{
 		 * 			&&	1<=floor add<=10
 		 * 			&&	-1<=way add<=1
 		 * @ MODIFIES: none
-		 * @ EFFECTS: Ë³Â·ÉÓ´øÅĞ¶ÏÓÃµÄ·½·¨(Õª×ÔÖ¸µ¼ÊéÖĞËµÃ÷Í¼Æ¬)
-		 * 				µ±¿ÉÍê³ÉË³Â·ÉÓ´ø:
-		 * 					1	(µçÌİµ±Ç°ÔË¶¯×´Ì¬ÎªUP£ºµ±Ç°Â¥²ã<Ä¿±êÂ¥²ã<=10)
-		 * 					 || (µçÌİµ±Ç°ÔË¶¯×´Ì¬ÎªDOWN£º1<=Ä¿±êÂ¥²ã<µ±Ç°Â¥²ã)
-		 * 					2	¶ÔÓÚÈÎÒâFRÀàĞÍÇëÇó£¬Èç¹ûÂú×ã1£¬Ôò£º
-		 * 						(Íâ²¿ÇëÇóÂ¥²ã=µ±Ç°ÔË¶¯×´Ì¬) && ((¢Ù) || (¢Ú))
-		 * 							¢Ù£ºÍâ²¿ÇëÇóÂ¥²ãÊÇUP£º
-		 * 								(Íâ²¿ÇëÇóÂ¥²ã<=Ä¿±êÂ¥²ã) && (Íâ²¿ÇëÇóÂ¥²ã>µ±Ç°Â¥²ã)
-		 * 							¢Ú£ºÍâ²¿ÇëÇóÂ¥²ãÊÇUP£º
-		 * 								(Íâ²¿ÇëÇóÂ¥²ã>=Ä¿±êÂ¥²ã) && (Íâ²¿ÇëÇóÂ¥²ã<µ±Ç°Â¥²ã)
-		 * 					3	¶ÔÓÚÈÎÒâERÀàĞÍÇëÇó£¬Èç¹ûÂú×ã1,Ôò£º
-		 * 							(µ±Ç°×´Ì¬ÊÇUP£ºÇëÇóÂ¥²ã>µ±Ç°Â¥²ã)
-		 * 						||	(µ±Ç°×´Ì¬ÊÇDOWN£ºÇëÇóÂ¥²ã<µ±Ç°Â¥²ã)
+		 * @ EFFECTS: é¡ºè·¯æå¸¦åˆ¤æ–­ç”¨çš„æ–¹æ³•(æ‘˜è‡ªæŒ‡å¯¼ä¹¦ä¸­è¯´æ˜å›¾ç‰‡)
+		 * 				å½“å¯å®Œæˆé¡ºè·¯æå¸¦:
+		 * 					1	(ç”µæ¢¯å½“å‰è¿åŠ¨çŠ¶æ€ä¸ºUPï¼šå½“å‰æ¥¼å±‚<ç›®æ ‡æ¥¼å±‚<=10)
+		 * 					 || (ç”µæ¢¯å½“å‰è¿åŠ¨çŠ¶æ€ä¸ºDOWNï¼š1<=ç›®æ ‡æ¥¼å±‚<å½“å‰æ¥¼å±‚)
+		 * 					2	å¯¹äºä»»æ„FRç±»å‹è¯·æ±‚ï¼Œå¦‚æœæ»¡è¶³1ï¼Œåˆ™ï¼š
+		 * 						(å¤–éƒ¨è¯·æ±‚æ¥¼å±‚=å½“å‰è¿åŠ¨çŠ¶æ€) && ((â‘ ) || (â‘¡))
+		 * 							â‘ ï¼šå¤–éƒ¨è¯·æ±‚æ¥¼å±‚æ˜¯UPï¼š
+		 * 								(å¤–éƒ¨è¯·æ±‚æ¥¼å±‚<=ç›®æ ‡æ¥¼å±‚) && (å¤–éƒ¨è¯·æ±‚æ¥¼å±‚>å½“å‰æ¥¼å±‚)
+		 * 							â‘¡ï¼šå¤–éƒ¨è¯·æ±‚æ¥¼å±‚æ˜¯UPï¼š
+		 * 								(å¤–éƒ¨è¯·æ±‚æ¥¼å±‚>=ç›®æ ‡æ¥¼å±‚) && (å¤–éƒ¨è¯·æ±‚æ¥¼å±‚<å½“å‰æ¥¼å±‚)
+		 * 					3	å¯¹äºä»»æ„ERç±»å‹è¯·æ±‚ï¼Œå¦‚æœæ»¡è¶³1,åˆ™ï¼š
+		 * 							(å½“å‰çŠ¶æ€æ˜¯UPï¼šè¯·æ±‚æ¥¼å±‚>å½“å‰æ¥¼å±‚)
+		 * 						||	(å½“å‰çŠ¶æ€æ˜¯DOWNï¼šè¯·æ±‚æ¥¼å±‚<å½“å‰æ¥¼å±‚)
 		 * 				==>\result==true
 		 * 			else==>\result==false
 		 */
@@ -164,7 +166,7 @@ public class scheduler extends scheduler_old{
 		/* @ REQUIRES: (j.getr.equals("ER") || j.getr.equals("FR"))
 		 * 			&& (s.equals("STILL") || s.equals("UP") || s.equals("DOWN"))
 		 * @ MODIFIES: none
-		 * @ EFFECTS: Êä³öÖ¸ÁîjÍê³ÉĞÅÏ¢
+		 * @ EFFECTS: è¾“å‡ºæŒ‡ä»¤jå®Œæˆä¿¡æ¯
 		 */
 		DecimalFormat df=new DecimalFormat("#####0.0");
 		if(j.getr().equals("ER")){
@@ -182,10 +184,10 @@ public class scheduler extends scheduler_old{
 	public void calculate(jiegou j){
 		/* @ REQUIRES:	repOK() && j.repOK()
 		 * @ MODIFIES: this
-		 * @ EFFECTS: Íê³ÉÖ÷ÇëÇó¼°¿ÉË³Â·ÉÓ´øµÄÇëÇó
-		 * 					==>Ö÷ÇëÇóµÄvalidÖÃÎªfalse
-		 * 				¸üĞÂÖ÷ÇëÇó(ÈôÓĞÄ³¿ÉÉÓ´øÇëÇóÎ´Íê³É)==>Ö÷ÇëÇó±ä¸üÎª µÚÒ»¸öÎ´Íê³ÉÉÓ´øÇëÇó
-		 * 										else ==>Ö÷ÇëÇó±äÎªµÚÒ»¸öÎ´Íê³ÉÇëÇó
+		 * @ EFFECTS: å®Œæˆä¸»è¯·æ±‚åŠå¯é¡ºè·¯æå¸¦çš„è¯·æ±‚
+		 * 					==>ä¸»è¯·æ±‚çš„validç½®ä¸ºfalse
+		 * 				æ›´æ–°ä¸»è¯·æ±‚(è‹¥æœ‰æŸå¯æå¸¦è¯·æ±‚æœªå®Œæˆ)==>ä¸»è¯·æ±‚å˜æ›´ä¸º ç¬¬ä¸€ä¸ªæœªå®Œæˆæå¸¦è¯·æ±‚
+		 * 										else ==>ä¸»è¯·æ±‚å˜ä¸ºç¬¬ä¸€ä¸ªæœªå®Œæˆè¯·æ±‚
 		 * 				
 		 */
 		
@@ -202,7 +204,7 @@ public class scheduler extends scheduler_old{
 			return;
 		}
 		
-		//¸üĞÂÖ÷ÇëÇó×´Ì¬£¬¸üĞÂµçÌİÔË¶¯·½Ïò
+		//æ›´æ–°ä¸»è¯·æ±‚çŠ¶æ€ï¼Œæ›´æ–°ç”µæ¢¯è¿åŠ¨æ–¹å‘
 		j.setvalid();
 		finishfloor=ele.getfloor();
 		if(j.getfloor()>ele.getfloor()){
@@ -218,7 +220,7 @@ public class scheduler extends scheduler_old{
 			ele.setway(-1);
 		}
 		
-		//µÃµ½Ö÷ÇëÇó¿ÉÉÓ´ø¶ÓÁĞ
+		//å¾—åˆ°ä¸»è¯·æ±‚å¯æå¸¦é˜Ÿåˆ—
 		mainlist.clear();
 		for(jiegou ji:alllist){
 			nft3=7;
@@ -256,7 +258,7 @@ public class scheduler extends scheduler_old{
 			int fi=1;
 			for(jiegou k:mainlist){
 				if(k.gettime()<finishtime){
-					//ÔÚµ½´ïÇ°·¢³öµÄ¿ÉÉÓ´øÇëÇó£¬Ö´ĞĞÉÓ´ø
+					//åœ¨åˆ°è¾¾å‰å‘å‡ºçš„å¯æå¸¦è¯·æ±‚ï¼Œæ‰§è¡Œæå¸¦
 					nft4=(nft4>13)?nft4:13;
 					if(k.getfloor()==ele.getfloor()){
 						if(samejudge(k)){
@@ -281,9 +283,9 @@ public class scheduler extends scheduler_old{
 				}
 				else{
 					nft4=(nft4>19)?nft4:19;
-					//µ½´ïºóÖ´ĞĞµÄÉÓ´øÇëÇó
+					//åˆ°è¾¾åæ‰§è¡Œçš„æå¸¦è¯·æ±‚
 					if(k.getfloor()==ele.getfloor()){
-						nft4=(nft4>20)?nft4:20;
+						nft4=20;
 						k.valid=false;
 					}
 				}
@@ -297,14 +299,13 @@ public class scheduler extends scheduler_old{
 		print(j);
 		warn=0;
 		
-		//Î´Íê³ÉÉÓ´øÇëÇó³ÉÎªÖ÷ÇëÇó
-		nft5=(nft5>0)?nft5:0;
+		//æœªå®Œæˆæå¸¦è¯·æ±‚æˆä¸ºä¸»è¯·æ±‚
 		for(jiegou i:mainlist){
 			nft5=(nft5>25)?nft5:25;
 			if(i.getvalid()){
 				nft5=(nft5>26)?nft5:26;
 				if(finishtime-1>i.gettime()){
-					nft5=(nft5>27)?nft5:27;
+					nft5=27;
 					calculate(i);
 					break;
 				}
@@ -321,9 +322,9 @@ public class scheduler extends scheduler_old{
 	public void print(jiegou j){
 		/* @ REQUIRES: (j.getr.equals("ER") || j.getr.equals("FR"))
 		 * @ MODIFIES: finish time
-		 * @ EFFECTS:Êä³öÖ¸ÁîjµÄĞÅÏ¢¼°Íê³ÉÊ±¼ä
-		 * 				Ä£Äâ¿ª¹ØÃÅ+1s ==>STILLÖ¸ÁîÏÈ¿ª¹ØÃÅ+1sÔÙÊä³ö
-		 * 								·ñÔòÏÈÊä³öÔÙ¿ª¹ØÃÅ+1s
+		 * @ EFFECTS:è¾“å‡ºæŒ‡ä»¤jçš„ä¿¡æ¯åŠå®Œæˆæ—¶é—´
+		 * 				æ¨¡æ‹Ÿå¼€å…³é—¨+1s ==>STILLæŒ‡ä»¤å…ˆå¼€å…³é—¨+1så†è¾“å‡º
+		 * 								å¦åˆ™å…ˆè¾“å‡ºå†å¼€å…³é—¨+1s
 		 */
 		if(j.getr().equals("ER")){
 			nft5=(nft5>0)?nft5:1;
@@ -351,7 +352,7 @@ public class scheduler extends scheduler_old{
 	public void savelist(jiegou j){
 		/* @ REQUIRES: j.repOK()
 		 * @ MODIFIES: all list
-		 * @ EFFECTS: ´æ´¢Ò»¸öĞÂµÄÇëÇó½øÈë×ÜµÄÇëÇó¶ÓÁĞ
+		 * @ EFFECTS: å­˜å‚¨ä¸€ä¸ªæ–°çš„è¯·æ±‚è¿›å…¥æ€»çš„è¯·æ±‚é˜Ÿåˆ—
 		 */
 		alllist.add(j);
 	}
