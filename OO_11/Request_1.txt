@@ -1,0 +1,23 @@
+The request 1 is:
+		From (1,80) To (10,10)
+Calling time is:81200ms
+
+At that time Taxis nearby:
+Driver No.28 is in (1,79)
+	Status:2	Mark:0
+taxi No.53 is in (1,79)
+	Status:2	Mark:0
+
+Driver hear the calling:
+Driver No.28 add to the list!
+Driver No.53 add to the list!
+Driver No.94 add to the list!
+No.94 got to catch the customer!
+The path is:
+(4,77)->(3,77)->(2,77)->(1,77)->(1,78)->(1,79)->(1,80)
+
+Driver stop to catch the man
+
+Driver driving to the destination!
+the path is:
+(1,80)->(1,79)->(1,78)->(1,77)->(1,76)->(1,75)->(1,74)->(1,73)->(1,72)->(1,71)->(1,70)->(1,69)->(1,68)->(1,67)->(1,66)->(1,65)->(1,64)->(1,63)->(1,62)->(1,61)->(1,60)->(1,59)->(1,58)->(1,57)->(1,56)->(1,55)->(1,54)->(1,53)->
